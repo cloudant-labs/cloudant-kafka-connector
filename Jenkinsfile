@@ -48,6 +48,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'testServerIamApiKey',
                         variable: 'APIKEY')]) {
+		    sh 'java --version'
+                    sh 'gradle --version'
                     sh 'gradle -Dcloudant.url=$SDKS_TEST_SERVER_URL -Dcloudant.auth.url=$SDKS_TEST_IAM_URL -Dcloudant.apikey=$APIKEY test'
                 }
             }
